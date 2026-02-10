@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Madem-Linathi | Algebra Flashcards (8)</title>
+
+  <!-- Math rendering (optional but nice) -->
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- Export tools -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+
+  <style>
+    :root{
+      --ink:#111; --muted:#444; --bg:#f6f7fb; --card:#fff;
+      --blue:#1a73e8; --green:#137333; --red:#b3261e; --border:#e6e6ee;
+    }
+    body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      background:var(--bg); color:var(--ink);}
+    header{padding:18px 16px; position:sticky; top:0; background:rgba(246,247,251,.95);
+      backdrop-filter: blur(8px); border-bottom:1px solid var(--border); z-index:10;}
+    h1{margin:0 0 6px; font-size:18px;}
+    .controls{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
+    button{border:0; padding:10px 12px; border-radius:10px; cursor:pointer; font-weight:600;}
+    .btn-blue{background:var(--blue); color:#fff;}
+    .btn-green{background:var(--green); color:#fff;}
+    .btn-ghost{background:#fff; border:1px solid var(--border); color:var(--ink);}
+    #status{font-size:13px; color:var(--muted); margin-left:auto;}
+    main{padding:16px; display:grid; gap:14px; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));}
+
+    /* Flashcard “print size”: A6 portrait aspect */
+    .cardWrap{display:grid; gap:10px;}
+    .card{
+      width: 360px; aspect-ratio: 105 / 148;
+      background:var(--card); border:1px solid var(--border);
+      border-radius:16px; overflow:hidden; box-shadow:0 6px 18px rgba(20,20,40,.06);
+    }
+    .bar{padding:12px 14px; background:var(--blue); color:#fff; font-weight:800; font-size:14px;}
+    .body{padding:12px 14px; display:grid; gap:10px; font-size:12.8px; line-height:1.25;}
+    .label{font-weight:800; font-size:12px; letter-spacing:.2px;}
+    .p{color:var(--ink);}
+    .mistake{color:var(--red); font-weight:700;}
+    .avoid{color:var(--green); font-weight:700;}
+    .demo{color:var(--ink); font-weight:700;}
+    .footer{padding:10px 14px; background:#f3f5f7; border-top:1px solid var(--border);
+      font-size:12px; color:var(--muted);}
+    .actions{display:flex; gap:10px;}
+    .actions button{flex:1}
+
+    /* Make export cleaner */
+    .exporting .actions, .exporting header {opacity:.6; pointer-events:none;}
+  </style>
+</head>
+
+<body>
+<header>
+  <h1>Madem‑Linathi: Algebra Flashcards (8) — “Principle + Mistake + Fix + Demo”</h1>
+  <div class="controls">
+    <button class="btn-blue" onclick="downloadAllJPG()">Download all JPEGs</button>
+    <button class="btn-green" onclick="downloadLeanPDF()">Download lean PDF</button>
+    <button class="btn-ghost" onclick="window.print()">Print (backup)</button>
+    <div id="status">Ready.</div>
+  </div>
+</header>
+
+<main id="deck">
+
+  <!-- 1 -->
+  <div class="cardWrap">
+    <div class="card" id="c1">
+      <div class="bar">1) Perfect square: (a + b)²</div>
+      <div class="body">
+        <div><div class="label">Principle</div><div class="p">(a + b)² = a² + 2ab + b² (middle term is always 2ab).</div></div>
+        <div><div class="label">Common mistake</div><div class="mistake">Writing (2x + y)² as 4x² + y² (missing 4xy).</div></div>
+        <div><div class="label">How to avoid</div><div class="avoid">Say the middle term out loud: 2·(2x)·(y) = 4xy.</div></div>
+        <div><div class="label">Mini demo</div><div class="demo">(2x + y)² = 4x² + 4xy + y².</div></div>
+      </div>
+      <div class="footer">Check by reversing: expand → simplify → return to start.</div>
+    </div>
+    <div class="actions">
+      <button class="btn-blue" onclick="downloadJPG('c1','Flashcard_01')">JPEG</button>
+      <button class="btn-ghost" onclick="copyText(1)">Copy text</button>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="cardWrap">
+    <div class="card" id="c2">
+      <div class="bar">2) Perfect square: (a − b)²</div>
+      <div class="body">
+        <div><div class="label">Principle</div><div class="p">(a − b)² = a² − 2ab + b² (middle term is negative).</div></div>
+        <div><div class="label">Common mistake</div><div class="mistake">Treating (2x − a)² like something to “solve” or factor first.</div></div>
+        <div><div class="label">How to avoid</div><div class="avoid">Square first term, subtract 2ab, add square last term.</div></div>
+        <div><div class="label">Mini demo</div><div class="demo">(2x − a)² = 4x² − 4ax + a².</div></div>
+      </div>
+      <div class="footer">Stop, name the structure, then choose the method.</div>
+    </div>
+    <div class="actions">
+      <button class="btn-blue" onclick="downloadJPG('c2','Flashcard_02')">JPEG</button>
+      <button class="btn-ghost" onclick="copyText(2)">Copy text</button>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="cardWrap">
+    <div class="card" id="c3">
+      <div class="bar">3) Fractions: same denominator</div>
+      <div class="body">
+        <div><div class="label">Principle</div><div class="p">a/c − b/c = (a − b)/c (denominator stays the same).</div></div>
+        <div><div class="label">Common mistake</div><div class="mistake">Changing the denominator or inventing extra coefficients.</div></div>
+        <div><div class="label">How to avoid</div><div class="avoid">Keep denominator fixed; subtract numerators; simplify last.</div></div>
+        <div><div class="label">Mini demo</div><div class="demo">4x¹⁰/3 − x¹⁰/3 = (4x¹⁰ − x¹⁰)/3 = x¹⁰.</div></div>
+      </div>
+      <div class="footer">Rule: show the combined numerator before simplifying.</div>
+    </div>
+    <div class="actions">
+      <button class="btn-blue" onclick="downloadJPG('c3','Flashcard_03')">JPEG</button>
+      <button class="btn-ghost" onclick="copyText(3)">Copy text</button>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="cardWrap">
+    <div class="card" id="c4">
+      <div class="bar">4) Minus sign through brackets</div>
+      <div class="body">
+        <div><div class="label">Principle</div><div class="p">−(A − B − C) = −A + B + C (every sign flips).</div></div>
+        <div><div class="label">Common mistake</div><div class="mistake">Dropping a sign when subtracting a whole bracket (Q8-type errors).</div></div>
+        <div><div class="label">How to avoid</div><div class="avoid">Write −1·( … ) then distribute slowly, term-by-term.</div></div>
+        <div><div class="label">Mini demo</div><div class="demo">3k² − (x² − 2x − 6) = 3k² − x² + 2x + 6.</div></div>
+      </div>
+      <div class="footer">If unsure: rewrite with + (negative) before expanding.</div>
+    </div>
+    <div class="actions">
+      <button class="btn-blue" onclick="downloadJPG('c4','Flashcard_04')">JPEG</button>
+      <button class="btn-ghost" onclick="copyText(4)">Copy text</button>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="cardWrap">
+    <div class="card" id="c5">
+      <div class="bar">5) k-substitution (“Suitcase method”)</div>
+      <div class="body">
+        <div><div class="label">Principle</div><div class="p">If a binomial repeats, let k equal the whole binomial to reduce load.</div></div>
+        <div><div class="label">Common mistake</div><div class="mistake">Substitute k but don’t substitute back; or expand k² incorrectly.</div></div>
+        <div><div class="label">How to avoid</div><div class="avoid">Steps: define k → rewrite → simplify → expand k² → substitute back.</div></div>
+        <div><div class="label">Mini demo</div><div class="demo">Let k=x²+2x. Then k²=(x²+2x)²=x⁴+4x³+4x².</div></div>
+      </div>
+      <div class="footer">Pack → do math → unpack (always unpack at the end).</div>
+    </div>
+    <div class="actions">
+      <button class="btn-blue" onclick="downloadJPG('c5','Flashcard_05')">JPEG</button>
+      <button class="btn-ghost" onclick="copyText(5)">Copy text</button>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="cardWrap">
+    <div class="card" id="c6">
+      <div class="bar">6) HCF first, then DOTS</div>
+      <div class="body">
+        <div><div class="label">Principle</div><div class="p">Factor HCF first. Then: a² − b² = (a−b)(a+b).</div></div>
+        <div><div class="label">Common mistake</div><div class="mistake">Jumping to DOTS before pulling out 3a in 27a³ − 3ab².</div></div>
+        <div><div class="label">How to avoid</div><div class="avoid">Do HCF: 27a³ − 3ab² = 3a(9a² − b²), then DOTS.</div></div>
+        <div><div class="label">Mini demo</div><div class="demo">3a(9a²−b²)=3a((3a)²−b²)=3a(3a−b)(3a+b).</div></div>
+      </div>
+      <div class="footer">Ask: “What’s common to every term?” before any pattern.</div>
+    </div>
+    <div class="actions">
+      <button class="btn-blue" onclick="downloadJPG('c6','Flashcard_06')">JPEG</button>
+      <button class="btn-ghost" onclick="copyText(6)">Copy text</button>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="cardWrap">
+    <div class="card" id="c7">
+      <div class="bar">7) Grouping in pairs</div>
+      <div class="body">
+        <div><div class="label">Principle</div><div class="p">ab+ac+db+dc = (a+d)(b+c) (make the same bracket twice).</div></div>
+        <div><div class="label">Common mistake</div><div class="mistake">Grouping that doesn’t produce a shared bracket.</div></div>
+        <div><div class="label">How to avoid</div><div class="avoid">Pair terms, factor each pair, then factor the common bracket.</div></div>
+        <div><div class="label">Mini demo</div><div class="demo">x⁴+x³+5x+5 = x³(x+1)+5(x+1)=(x+1)(x³+5).</div></div>
+      </div>
+      <div class="footer">If the brackets aren’t identical, regroup.</div>
+    </div>
+    <div class="actions">
+      <button class="btn-blue" onclick="downloadJPG('c7','Flashcard_07')">JPEG</button>
+      <button class="btn-ghost" onclick="copyText(7)">Copy text</button>
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="cardWrap">
+    <div class="card" id="c8">
+      <div class="bar">8) “Pause & Name” (10 seconds)</div>
+      <div class="body">
+        <div><div class="label">Principle</div><div class="p">Name the structure before solving: PST, DOTS, HCF, Grouping, Fraction.</div></div>
+        <div><div class="label">Common mistake</div><div class="mistake">Using a method that doesn’t fit (DOTS when it’s not a²−b²).</div></div>
+        <div><div class="label">How to avoid</div><div class="avoid">Checklist: terms? HCF? squares? repeated binomial? bracket subtraction?</div></div>
+        <div><div class="label">Mini demo</div><div class="demo">9m²−6m+1 is PST: (3m−1)² (not DOTS).</div></div>
+      </div>
+      <div class="footer">Speed comes after accuracy. Structure first.</div>
+    </div>
+    <div class="actions">
+      <button class="btn-blue" onclick="downloadJPG('c8','Flashcard_08')">JPEG</button>
+      <button class="btn-ghost" onclick="copyText(8)">Copy text</button>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  const statusEl = document.getElementById("status");
+  const deck = document.getElementById("deck");
+  const ids = ["c1","c2","c3","c4","c5","c6","c7","c8"];
+
+  function setStatus(msg){ statusEl.textContent = msg; }
+
+  async function renderJPG(el){
+    // White background for clean exports
+    const canvas = await html2canvas(el, {backgroundColor:"#ffffff", scale: 3});
+    return canvas.toDataURL("image/jpeg", 0.92);
+  }
+
+  function saveDataUrl(dataUrl, filename){
+    const a = document.createElement("a");
+    a.href = dataUrl;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+
+  async function downloadJPG(id, name){
+    document.body.classList.add("exporting");
+    try{
+      setStatus(`Rendering ${name}.jpg ...`);
+      const el = document.getElementById(id);
+      const dataUrl = await renderJPG(el);
+      saveDataUrl(dataUrl, `${name}.jpg`);
+      setStatus(`Saved ${name}.jpg`);
+    } finally {
+      document.body.classList.remove("exporting");
+    }
+  }
+
+  async function downloadAllJPG(){
+    document.body.classList.add("exporting");
+    try{
+      for (let i=0;i<ids.length;i++){
+        const n = String(i+1).padStart(2,"0");
+        setStatus(`Rendering Flashcard_${n}.jpg (${i+1}/8) ...`);
+        const dataUrl = await renderJPG(document.getElementById(ids[i]));
+        saveDataUrl(dataUrl, `Flashcard_${n}.jpg`);
+        await new Promise(r=>setTimeout(r, 250));
+      }
+      setStatus("All JPEGs saved.");
+    } finally {
+      document.body.classList.remove("exporting");
+    }
+  }
+
+  async function downloadLeanPDF(){
+    document.body.classList.add("exporting");
+    try{
+      setStatus("Building lean PDF (8 pages) ...");
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF({orientation:"portrait", unit:"mm", format:"a6"});
+
+      for (let i=0;i<ids.length;i++){
+        if (i>0) pdf.addPage("a6","portrait");
+        const dataUrl = await renderJPG(document.getElementById(ids[i]));
+        // A6 size in mm: 105 x 148
+        pdf.addImage(dataUrl, "JPEG", 0, 0, 105, 148, undefined, "FAST");
+        setStatus(`Added page ${i+1}/8 ...`);
+      }
+      pdf.save("Madem-Linathi_Flashcards_Lean.pdf");
+      setStatus("Lean PDF saved.");
+    } finally {
+      document.body.classList.remove("exporting");
+    }
+  }
+
+  function copyText(n){
+    const el = document.getElementById("c"+n);
+    const text = el.innerText.replace(/\n{3,}/g,"\n\n");
+    navigator.clipboard.writeText(text);
+    setStatus(`Copied Flashcard ${n} text.`);
+  }
+
+  setStatus("Ready. Download JPEGs or the lean PDF.");
+</script>
+</body>
+</html>
